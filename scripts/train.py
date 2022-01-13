@@ -1,84 +1,77 @@
-from datasets import load_dataset
-from transformers import BertModel, BertConfig
-from transformers import AutoTokenizer
-from transformers import AutoModelForSequenceClassification, AutoModel
-from transformers import TrainingArguments, Trainer, BatchEncoding
-from transformers import DataCollatorWithPadding
+from scripts.data import WorstDialogSampler
+from scripts.utils import DialogPrediction
+from torch.utils.data import DataLoader
+from transformers import AdamW
+from transformers import get_scheduler
+import torch
 
 
-def make_dialog(s):
-    return ''.join(map(lambda x: f'-{x}', s))
+def train(model,
+          train_dataset,
+          validation_dataset,
+          tokenizer,
+          device,
+          metric,
+          bottom_percents=10,
+          num_epochs=10,
+          batch_size=32):
+    dp = DialogPrediction()
 
+    train_worst_sampler = WorstDialogSampler(train_dataset, dp, bottom_percents)
+    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, sampler=train_worst_sampler)
+    eval_dataloader = DataLoader(validation_dataset, batch_size=batch_size)
 
-# {TypeError}TextEncodeInput must be Union[TextInputSequence, Tuple[InputSequence, InputSequence]]
-def preprocess_function(examples):
-    # print(''.join(map(lambda x: f'-{x}', examples['dialog'][0])))
-    # tokenizer(examples['dialog'], is_split_into_words=True)
-    # dialogs = list(map(make_dialog, examples['dialog']))
-    # print(dialogs[0])
-    # data = tokenizer(dialogs, truncation=True)
-    # sentences=
-    # data = tokenizer(examples['dialog'], truncation=True)
-    # [tokenizer(dialog, truncation=True) for dialog in dialogs]
-    # data['labels'] = examples['act']
-    # data['labels'] = list(map(lambda x: x[0], examples['act']))
-    # result = BatchEncoding()
-    # data = [tokenizer(examples['dialog'][i]) for i in range(len(examples['dialog']))]
-    # labels = [examples['act'][i] for i in range(len(examples['act']))]
-    # input_ids = [data[i]['input_ids'] for i in range(len(data))]
-    # token_type_ids = [data[i]['token_type_ids'] for i in range(len(data))]
-    # attention_mask = [data[i]['attention_mask'] for i in range(len(data))]
-    # return {'input_ids': input_ids, 'token_type_ids': token_type_ids, 'attention_mask': attention_mask,
-    #         'labels': labels}
-    result = tokenizer(examples['dialog'], truncation=True, padding=True)
-    result['label'] = examples['act']
-    return result
+    optimizer = AdamW(model.parameters(), lr=5e-5)
 
+    num_training_steps = (len(train_dataset) + len(train_dataset) * bottom_percents // 10 * (
+            num_epochs - 1)) // batch_size
+    lr_scheduler = get_scheduler(
+        "linear",
+        optimizer=optimizer,
+        num_warmup_steps=0,
+        num_training_steps=num_training_steps
+    )
 
-def make_classification_sentences(examples):
+    train_history = {'loss': [], 'metrics': []}
 
-    return examples
+    for epoch in range(num_epochs):
+        model.train()
+        total_loss = 0
+        for batch in train_dataloader:
+            batch_dict = {k: v for k, v in batch.items()}
+            data = tokenizer(batch_dict['dialog'], truncation=True, padding=True, max_length=512, return_tensors='pt')
+            data['labels'] = batch_dict['act']
+            batch = {k: v.to(device) for k, v in data.items()}
 
+            outputs = model(**batch)
+            if not train_worst_sampler.is_init:
+                predictions = torch.argmax(outputs.logits, dim=-1)
+                for i in range(len(data['labels'])):
+                    dp.add_answer(int(batch_dict['dialog_num'][i]), predictions[i] == data['labels'][i])
+            loss = outputs.loss
+            total_loss += float(loss)
+            loss.backward()
 
-dataset = load_dataset("daily_dialog")
+            optimizer.step()
+            lr_scheduler.step()
+            optimizer.zero_grad()
 
-tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
-model = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=5)
+        train_history['loss'].append(total_loss)
 
-auto_model = AutoModel.from_pretrained('bert-base-uncased')
+        if not train_worst_sampler.is_init:
+            train_worst_sampler.choose_worst()
 
-# class_sentences = dataset.map(make_classification_sentences)
+        model.eval()
+        for batch in eval_dataloader:
+            batch_dict = {k: v for k, v in batch.items()}
+            data = tokenizer(batch_dict['dialog'], truncation=True, padding=True, max_length=512, return_tensors='pt')
+            data['labels'] = batch_dict['act']
+            batch = {k: v.to(device) for k, v in data.items()}
 
-tokenized_dataset = dataset.map(preprocess_function)
+            outputs = model(**batch)
+            predictions = torch.argmax(outputs.logits, dim=-1)
+            metric.add_batch(predictions=predictions, references=data['labels'])
+        metric_value = metric.compute(average='weighted')
+        train_history['metrics'].append(metric_value)
 
-data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
-
-training_args = TrainingArguments(
-    output_dir='./results',
-    learning_rate=2e-5,
-    # per_device_train_batch_size=16,
-    # per_device_eval_batch_size=16,
-    num_train_epochs=5,
-    weight_decay=0.01,
-)
-
-
-class DialogTrainer(Trainer):
-    def compute_loss(self, model, inputs, return_outputs=False):
-        labels = inputs.get('labels')
-        outputs = model(**inputs)
-
-        i = 1
-        return 1
-
-
-trainer = DialogTrainer(
-    model=model,
-    args=training_args,
-    train_dataset=tokenized_dataset["train"],
-    eval_dataset=tokenized_dataset["validation"],
-    tokenizer=tokenizer,
-    data_collator=data_collator,
-)
-
-trainer.train()
+    return train_history
