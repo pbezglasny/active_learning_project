@@ -1,6 +1,8 @@
 from torch.utils.data import Sampler
 from typing import Iterator
 
+from scripts.utils import DialogPrediction
+
 
 class WorstDialogSampler(Sampler):
 
