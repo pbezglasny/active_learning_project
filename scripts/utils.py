@@ -1,5 +1,7 @@
 from collections import defaultdict
 import heapq
+from sklearn.metrics import accuracy_score
+from abc import ABC, abstractmethod
 
 
 class DialogStats:
@@ -23,7 +25,14 @@ class DialogStats:
         return f'{self.correct_ans}/{self.total_ans}'
 
 
-class DialogPrediction:
+class AbstractDialogPrediction(ABC):
+
+    @abstractmethod
+    def get_bottom_k_percents(self, k):
+        pass
+
+
+class DialogPrediction(AbstractDialogPrediction):
     def __init__(self):
         self.answers = None
         self.reset()
@@ -53,3 +62,49 @@ class DialogPrediction:
         return str(self.answers)
 
 
+class DialogPredictionCustomMetric(AbstractDialogPrediction):
+
+    def __init__(self, metric=accuracy_score, metric_kwargs=None):
+        if metric_kwargs is None:
+            metric_kwargs = {}
+        self.actual_answers = None
+        self.predicted_answers = None
+        self.metric = metric
+        self.metric_kwargs = metric_kwargs
+
+    def reset(self):
+        self.actual_answers = defaultdict(list)
+        self.predicted_answers = defaultdict(list)
+
+    def add_answer(self, dialog_id, actual, predicted):
+        self.actual_answers[dialog_id].append(actual)
+        self.predicted_answers[dialog_id].append(predicted)
+
+    def add_batch(self, dialog_id, actual, predicted):
+        self.actual_answers[dialog_id] = actual
+        self.predicted_answers[dialog_id] = predicted
+
+    def get_bottom_k_percents(self, k):
+        answer = []
+        if len(self.actual_answers) != len(self.predicted_answers):
+            raise ValueError(
+                f'Size of actual answers is not equal to size'
+                f' of predicted, given {len(self.actual_answers)} '
+                f'and {len(self.predicted_answers)}')
+        result_count = len(self.actual_answers) * k // 100
+        result_count = max(result_count, 1)
+        for key in self.actual_answers.keys():
+            if key not in self.predicted_answers:
+                raise ValueError(f'Key {key} does not appear in predicted dict')
+            actual = self.actual_answers[key]
+            pred = self.predicted_answers[key]
+            metric_value = -self.metric(actual, pred, **self.metric_kwargs)
+            if len(answer) < result_count:
+                heapq.heappush(answer, (metric_value, k))
+            else:
+                prev_ratio, dialog_id = heapq.heappop(answer)
+                if prev_ratio > metric_value:
+                    heapq.heappush(answer, (prev_ratio, dialog_id))
+                else:
+                    heapq.heappush(answer, (metric_value, k))
+        return [dialog_id for _, dialog_id in answer]

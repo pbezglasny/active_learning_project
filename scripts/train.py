@@ -59,7 +59,7 @@ def train(model,
         train_history['loss'].append(total_loss)
 
         if not train_worst_sampler.is_init:
-            train_worst_sampler.choose_worst()
+            train_worst_sampler.update_worst()
 
         model.eval()
         for batch in eval_dataloader:
