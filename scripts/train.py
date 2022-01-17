@@ -6,6 +6,14 @@ from transformers import get_scheduler
 import torch
 
 
+def _make_batch_data(batch, tokenizer, device,
+                     **tokenizer_kwargs):
+    batch_dict = {k: v for k, v in batch.items()}
+    data = tokenizer(batch_dict['dialog'], **tokenizer_kwargs)
+    data['labels'] = batch_dict['act']
+    return {k: v.to(device) for k, v in data.items()}
+
+
 def train(model,
           train_dataset,
           validation_dataset,
@@ -38,16 +46,15 @@ def train(model,
         model.train()
         total_loss = 0
         for batch in train_dataloader:
-            batch_dict = {k: v for k, v in batch.items()}
-            data = tokenizer(batch_dict['dialog'], truncation=True, padding=True, max_length=512, return_tensors='pt')
-            data['labels'] = batch_dict['act']
-            batch = {k: v.to(device) for k, v in data.items()}
-
-            outputs = model(**batch)
+            data = _make_batch_data(batch, tokenizer, device,
+                                    truncation=True, padding=True,
+                                    max_length=512,
+                                    return_tensors='pt')
+            outputs = model(**data)
             if not train_worst_sampler.is_init:
                 predictions = torch.argmax(outputs.logits, dim=-1)
                 for i in range(len(data['labels'])):
-                    dp.add_answer(int(batch_dict['dialog_num'][i]), predictions[i] == data['labels'][i])
+                    dp.add_answer(int(data['dialog_num'][i]), predictions[i] == data['labels'][i])
             loss = outputs.loss
             total_loss += float(loss)
             loss.backward()
@@ -63,12 +70,11 @@ def train(model,
 
         model.eval()
         for batch in eval_dataloader:
-            batch_dict = {k: v for k, v in batch.items()}
-            data = tokenizer(batch_dict['dialog'], truncation=True, padding=True, max_length=512, return_tensors='pt')
-            data['labels'] = batch_dict['act']
-            batch = {k: v.to(device) for k, v in data.items()}
-
-            outputs = model(**batch)
+            data = _make_batch_data(batch, tokenizer, device,
+                                    truncation=True, padding=True,
+                                    max_length=512,
+                                    return_tensors='pt')
+            outputs = model(**data)
             predictions = torch.argmax(outputs.logits, dim=-1)
             metric.add_batch(predictions=predictions, references=data['labels'])
         metric_value = metric.compute(average='weighted')
