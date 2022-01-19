@@ -14,32 +14,6 @@ def _make_batch_data(batch, tokenizer, device,
     return {k: v.to(device) for k, v in data.items()}, batch['dialog_id']
 
 
-class Trainer:
-
-    def __init__(self, model, tokenizer, device, metric, metric_kwargs):
-        self.model = model
-        self.tokenizer = tokenizer
-        self.device = device
-        self.metric = metric
-        self.metric_kwargs = metric_kwargs
-
-    def train(self, num_epochs, bottom_percents, batch_size):
-        pass
-
-    def evaluate(self, eval_dataloader, train_history):
-        self.model.eval()
-        for batch in eval_dataloader:
-            data, dialog_ids = _make_batch_data(batch, self.tokenizer, self.device,
-                                                truncation=True, padding=True,
-                                                max_length=512,
-                                                return_tensors='pt')
-            outputs = self.model(**data)
-            predictions = torch.argmax(outputs.logits, dim=-1)
-            self.metric.add_batch(predictions=predictions, references=data['labels'])
-        metric_value = self.metric.compute(**self.metric_kwargs)
-        train_history['metrics'].append(metric_value)
-
-
 def train(model,
           train_dataloader,
           train_sampler,
