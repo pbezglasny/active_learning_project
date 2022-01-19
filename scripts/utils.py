@@ -115,5 +115,5 @@ class DialogPredictionCustomMetric(AbstractDialogPrediction):
                 if prev_ratio > metric_value:
                     heapq.heappush(answer, (prev_ratio, dialog_id))
                 else:
-                    heapq.heappush(answer, (metric_value, k))
+                    heapq.heappush(answer, (metric_value, key))
         return [dialog_id for _, dialog_id in answer]
