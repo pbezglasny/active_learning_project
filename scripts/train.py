@@ -124,14 +124,8 @@ def train(model,
           num_epochs=10):
     dp = DialogMetricCounter()
 
-    # train_worst_sampler = WorstDialogSampler(train_dataset, dp, bottom_percents)
-    # train_dataloader = DataLoader(train_dataset, batch_size=batch_size, sampler=train_worst_sampler)
-    # eval_dataloader = DataLoader(validation_dataset, batch_size=batch_size)
-
     optimizer = AdamW(model.parameters(), lr=5e-5)
 
-    # num_training_steps = (len(train_dataset) + len(train_dataset) * bottom_percents // 10 * (
-    #         num_epochs - 1)) // batch_size
     lr_scheduler = get_scheduler(
         "linear",
         optimizer=optimizer,

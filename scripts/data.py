@@ -123,8 +123,9 @@ class RandomSamplerWithRemoval(AbstractWorstDialogSampler):
 
     def _update_next_dialog_ids(self, sample_count):
         self.next_dialog_ids = set(
-            np.random.choice(self.available_dialog_ids,
-                             min(sample_count, len(self.available_dialog_ids))))
+            [int(i) for i in np.random.choice(self.available_dialog_ids,
+                                              min(sample_count,
+                                                  len(self.available_dialog_ids)))])
         self.available_dialog_ids = [dialog_id for dialog_id in
                                      self.available_dialog_ids if
                                      dialog_id not in self.next_dialog_ids]
