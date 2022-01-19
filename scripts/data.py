@@ -4,7 +4,7 @@ import numpy as np
 
 from torch.utils.data import Sampler
 
-from scripts.utils import AbstractDialogPrediction
+from scripts.utils import AbstractDialogMetricCounter
 
 
 class AbstractWorstDialogSampler(ABC, Sampler):
@@ -21,7 +21,7 @@ class AbstractWorstDialogSampler(ABC, Sampler):
 class WorstDialogSampler(AbstractWorstDialogSampler):
 
     def __init__(self, data_source,
-                 dialog_predictions: AbstractDialogPrediction,
+                 dialog_predictions: AbstractDialogMetricCounter,
                  bottom_k_percents: int):
         super().__init__(data_source)
         self.data_source = data_source
@@ -68,23 +68,33 @@ class WorstDialogSamplerWithRemoval(AbstractWorstDialogSampler):
 
     def __init__(self,
                  data_source,
-                 dialog_predictions: AbstractDialogPrediction,
-                 bottom_k_percents: int):
+                 dialog_predictions: AbstractDialogMetricCounter,
+                 bottom_k: int,
+                 is_percent: bool):
         super().__init__(data_source)
         self.dialog_ids = list(range(len(data_source)))
         self.next_dialogs = set()
         self.dialog_predictions = dialog_predictions
-        self.bottom_k_percents = bottom_k_percents
+        self.bottom_k = bottom_k
+        self.is_percent = is_percent
         self.is_eval = False
 
     def eval(self, is_eval):
         self.is_eval = is_eval
 
-    def update_source_after_epoch(self, bottom_k_percents=None):
-        if bottom_k_percents is None:
-            bottom_k_percents = self.bottom_k_percents
-        self.next_dialogs = set(self.dialog_predictions.
-                                get_bottom_k_percents(bottom_k_percents))
+    def update_source_after_epoch(self, bottom_k=None, is_percent=None):
+        if bottom_k is None:
+            bottom_k = self.bottom_k
+        if is_percent is None:
+            is_percent = self.is_percent
+        if is_percent:
+            dialogs = self.dialog_predictions. \
+                get_bottom_k_percents(bottom_k)
+        else:
+            dialogs = self.dialog_predictions. \
+                get_bottom_k_values(bottom_k)
+
+        self.next_dialogs = set(dialogs)
         self.dialog_ids = [did for did in self.dialog_ids
                            if did not in self.next_dialogs]
 

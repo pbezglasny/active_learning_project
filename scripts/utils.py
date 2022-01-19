@@ -25,7 +25,7 @@ class DialogStats:
         return f'{self.correct_ans}/{self.total_ans}'
 
 
-class AbstractDialogPrediction(ABC):
+class AbstractDialogMetricCounter(ABC):
 
     @abstractmethod
     def get_bottom_k_values(self, k):
@@ -44,7 +44,7 @@ class AbstractDialogPrediction(ABC):
         pass
 
 
-class DialogPrediction(AbstractDialogPrediction):
+class DialogMetricCounter(AbstractDialogMetricCounter):
     def __init__(self):
         self.answers = None
         self.reset()
@@ -80,7 +80,7 @@ class DialogPrediction(AbstractDialogPrediction):
         return str(self.answers)
 
 
-class DialogPredictionCustomMetric(AbstractDialogPrediction):
+class DialogCustomMetricCounter(AbstractDialogMetricCounter):
 
     def __init__(self, metric=accuracy_score, metric_kwargs=None):
         if metric_kwargs is None:

@@ -3,7 +3,7 @@ from transformers import AdamW
 from transformers import get_scheduler
 
 from scripts.data import AbstractWorstDialogSampler
-from scripts.utils import DialogPrediction, AbstractDialogPrediction
+from scripts.utils import DialogMetricCounter, AbstractDialogMetricCounter
 
 
 def _make_batch_data(batch, tokenizer, device,
@@ -21,12 +21,15 @@ class Trainer:
                  first_epoch_dataloader,
                  train_dataloader,
                  train_sampler: AbstractWorstDialogSampler,
-                 dp: AbstractDialogPrediction,
+                 dp: AbstractDialogMetricCounter,
                  eval_dataloader,
                  tokenizer, device,
                  metric,
                  metric_kwargs,
+                 dialog_metric_counter_kwargs=None,
                  **kwargs):
+        if dialog_metric_counter_kwargs is None:
+            dialog_metric_counter_kwargs = {}
         self.model = model
         self.first_epoch_dataloader = first_epoch_dataloader
         self.train_dataloader = train_dataloader
@@ -38,6 +41,7 @@ class Trainer:
         self.metric_kwargs = metric_kwargs
         self.dp = dp
         self.optimizer = AdamW(model.parameters(), lr=5e-5)
+        self.dialog_metric_counter_kwargs = dialog_metric_counter_kwargs
         self.init(**kwargs)
 
     def init(self, **kwargs):
@@ -92,7 +96,7 @@ class Trainer:
             for i in range(len(data['labels'])):
                 self.dp.add_answer(dialog_id=int(dialog_ids[i]), actual=int(data['labels'][i]),
                                    predicted=int(predictions[i]))
-        self.train_sampler.update_source_after_epoch()
+        self.train_sampler.update_source_after_epoch(**self.dialog_metric_counter_kwargs)
 
     def evaluate(self, epoch, train_history):
         self.model.eval()
@@ -118,7 +122,7 @@ def train(model,
           device,
           metric,
           num_epochs=10):
-    dp = DialogPrediction()
+    dp = DialogMetricCounter()
 
     # train_worst_sampler = WorstDialogSampler(train_dataset, dp, bottom_percents)
     # train_dataloader = DataLoader(train_dataset, batch_size=batch_size, sampler=train_worst_sampler)
