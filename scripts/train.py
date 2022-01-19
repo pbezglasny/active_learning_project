@@ -3,7 +3,7 @@ from transformers import AdamW
 from transformers import get_scheduler
 
 from scripts.data import AbstractWorstDialogSampler
-from scripts.utils import DialogMetricCounter, AbstractDialogMetricCounter
+from scripts.utils import AbstractDialogMetricCounter
 
 
 def _make_batch_data(batch, tokenizer, device,
@@ -112,66 +112,3 @@ class Trainer:
         metric_value = self.metric.compute(**self.metric_kwargs)
         print(metric_value)
         train_history['metrics'].append(metric_value)
-
-
-def train(model,
-          train_dataloader,
-          train_sampler,
-          eval_dataloader,
-          num_training_steps,
-          tokenizer,
-          device,
-          metric,
-          num_epochs=10):
-    dp = DialogMetricCounter()
-
-    optimizer = AdamW(model.parameters(), lr=5e-5)
-
-    lr_scheduler = get_scheduler(
-        "linear",
-        optimizer=optimizer,
-        num_warmup_steps=0,
-        num_training_steps=num_training_steps
-    )
-
-    train_history = {'loss': [], 'metrics': []}
-
-    for epoch in range(num_epochs):
-        model.train()
-        total_loss = 0
-        for batch in train_dataloader:
-            data, dialog_ids = _make_batch_data(batch, tokenizer, device,
-                                                truncation=True, padding=True,
-                                                max_length=512,
-                                                return_tensors='pt')
-            outputs = model(**data)
-            if not train_sampler.is_init:
-                predictions = torch.argmax(outputs.logits, dim=-1)
-                for i in range(len(data['labels'])):
-                    dp.add_answer(int(dialog_ids[i]), predictions[i] == data['labels'][i])
-            loss = outputs.loss
-            total_loss += float(loss)
-            loss.backward()
-
-            optimizer.step()
-            lr_scheduler.step()
-            optimizer.zero_grad()
-
-        train_history['loss'].append(total_loss)
-
-        if not train_sampler.is_init:
-            train_sampler.update_source_after_epoch()
-
-        model.eval()
-        for batch in eval_dataloader:
-            data, dialog_ids = _make_batch_data(batch, tokenizer, device,
-                                                truncation=True, padding=True,
-                                                max_length=512,
-                                                return_tensors='pt')
-            outputs = model(**data)
-            predictions = torch.argmax(outputs.logits, dim=-1)
-            metric.add_batch(predictions=predictions, references=data['labels'])
-        metric_value = metric.compute(average='weighted')
-        train_history['metrics'].append(metric_value)
-
-    return train_history

@@ -16,7 +16,7 @@ f1 = load_metric('f1')
 dataset = DatasetDict.load_from_disk('/home/pavel/work/active_learning_project/exploded_dataset')
 
 model_name = 'bert-base-uncased'
-num_epochs = 10
+num_epochs = 2
 percent_of_data_at_epoch = 10
 batch_size = 32
 eval_metric_kwargs = {'average': 'weighted'}
