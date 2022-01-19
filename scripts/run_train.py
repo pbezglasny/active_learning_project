@@ -1,4 +1,3 @@
-import numpy as np
 import torch
 from datasets import DatasetDict
 from datasets import load_metric
@@ -72,4 +71,4 @@ random_trainer = Trainer(
     num_training_steps=500
 )
 
-random_trainer.train(num_epochs)
+print(random_trainer.train(num_epochs))

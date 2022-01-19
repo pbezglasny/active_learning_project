@@ -58,6 +58,7 @@ class Trainer:
             self.at_each_epoch_step(epoch, train_history)
             self.at_epoch_end(epoch, train_history)
             self.evaluate(epoch, train_history)
+        return train_history
 
     def at_each_epoch_step(self, epoch, train_history):
         self.model.train()
