@@ -71,6 +71,7 @@ class DialogPredictionCustomMetric(AbstractDialogPrediction):
         self.predicted_answers = None
         self.metric = metric
         self.metric_kwargs = metric_kwargs
+        self.reset()
 
     def reset(self):
         self.actual_answers = defaultdict(list)

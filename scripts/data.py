@@ -13,6 +13,10 @@ class AbstractWorstDialogSampler(ABC, Sampler):
     def update_source_after_epoch(self, **kwargs):
         pass
 
+    @abstractmethod
+    def eval(self, is_eval):
+        pass
+
 
 class WorstDialogSampler(AbstractWorstDialogSampler):
 
@@ -30,6 +34,9 @@ class WorstDialogSampler(AbstractWorstDialogSampler):
 
     def set_init(self, is_init=True):
         self.is_init = is_init
+
+    def eval(self, is_eval):
+        pass
 
     def update_source_after_epoch(self, bottom_k_percents=None):
         if bottom_k_percents is None:
@@ -68,20 +75,31 @@ class WorstDialogSamplerWithRemoval(AbstractWorstDialogSampler):
         self.next_dialogs = set()
         self.dialog_predictions = dialog_predictions
         self.bottom_k_percents = bottom_k_percents
+        self.is_eval = False
+
+    def eval(self, is_eval):
+        self.is_eval = is_eval
 
     def update_source_after_epoch(self, bottom_k_percents=None):
         if bottom_k_percents is None:
             bottom_k_percents = self.bottom_k_percents
         self.next_dialogs = set(self.dialog_predictions.
                                 get_bottom_k_percents(bottom_k_percents))
+        print(list(self.next_dialogs)[:10])
         self.dialog_ids = [did for did in self.dialog_ids
                            if did not in self.next_dialogs]
 
     def __len__(self):
-        return len(self.next_dialogs)
+        if self.is_eval:
+            return len(self.dialog_ids)
+        else:
+            return len(self.next_dialogs)
 
     def __iter__(self):
-        return iter(self.next_dialogs)
+        if self.is_eval:
+            return iter(self.dialog_ids)
+        else:
+            return iter(self.next_dialogs)
 
 
 class RandomSamplerWithRemoval(AbstractWorstDialogSampler):
@@ -92,6 +110,7 @@ class RandomSamplerWithRemoval(AbstractWorstDialogSampler):
         self.available_dialog_ids = range(len(data_source))
         self.next_dialog_ids = set()
         self._update_next_dialog_ids(sample_count)
+        self.is_eval = False
 
     def _update_next_dialog_ids(self, sample_count):
         self.next_dialog_ids = set(
@@ -105,6 +124,9 @@ class RandomSamplerWithRemoval(AbstractWorstDialogSampler):
         if sample_count is None:
             sample_count = self.sample_count
         self._update_next_dialog_ids(sample_count)
+
+    def eval(self, is_eval):
+        self.is_eval = is_eval
 
     def __len__(self):
         return len(self.next_dialog_ids)

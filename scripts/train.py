@@ -1,9 +1,9 @@
-from scripts.data import WorstDialogSampler
-from scripts.utils import DialogPrediction
-from torch.utils.data import DataLoader
+import torch
 from transformers import AdamW
 from transformers import get_scheduler
-import torch
+
+from scripts.data import AbstractWorstDialogSampler
+from scripts.utils import DialogPrediction, DialogPredictionCustomMetric
 
 
 def _make_batch_data(batch, tokenizer, device,
@@ -14,6 +14,98 @@ def _make_batch_data(batch, tokenizer, device,
     return {k: v.to(device) for k, v in data.items()}, batch['dialog_id']
 
 
+class Trainer:
+
+    def __init__(self, model,
+                 first_epoch_dataloader,
+                 train_dataloader,
+                 train_sampler: AbstractWorstDialogSampler,
+                 eval_dataloader,
+                 tokenizer, device,
+                 metric,
+                 metric_kwargs,
+                 **kwargs):
+        self.model = model
+        self.first_epoch_dataloader = first_epoch_dataloader
+        self.train_dataloader = train_dataloader
+        self.train_sampler = train_sampler
+        self.eval_dataloader = eval_dataloader
+        self.tokenizer = tokenizer
+        self.device = device
+        self.metric = metric
+        self.metric_kwargs = metric_kwargs
+        self.dp = DialogPredictionCustomMetric(metric,
+                                               metric_kwargs=metric_kwargs)
+        self.optimizer = AdamW(model.parameters(), lr=5e-5)
+        self.init(**kwargs)
+
+    def init(self, **kwargs):
+        self.lr_scheduler = get_scheduler(
+            "linear",
+            optimizer=self.optimizer,
+            num_warmup_steps=0,
+            num_training_steps=kwargs['num_training_steps']
+        )
+
+    def train(self, num_epochs):
+        train_history = {'loss': [], 'metrics': []}
+        for epoch in range(num_epochs):
+            self.at_each_epoch_step(epoch, train_history)
+            self.after_epoch_end(epoch, train_history)
+            self.evaluate(epoch, train_history)
+
+    def at_each_epoch_step(self, epoch, train_history):
+        self.model.train()
+        total_loss = 0
+        self.train_sampler.eval(False)
+        dataloader = self.train_dataloader
+        if epoch == 0:
+            dataloader = self.first_epoch_dataloader
+        for batch in dataloader:
+            data, dialog_ids = _make_batch_data(batch, self.tokenizer, self.device,
+                                                truncation=True, padding=True,
+                                                max_length=512,
+                                                return_tensors='pt')
+            outputs = self.model(**data)
+            loss = outputs.loss
+            total_loss += float(loss)
+            loss.backward()
+
+            self.optimizer.step()
+            self.lr_scheduler.step()
+            self.optimizer.zero_grad()
+        print(total_loss)
+        train_history['loss'].append(total_loss)
+
+    def after_epoch_end(self, epoch_num, train_history):
+        self.train_sampler.eval(True)
+        self.model.eval()
+        for batch in self.train_dataloader:
+            data, dialog_ids = _make_batch_data(batch, self.tokenizer, self.device,
+                                                truncation=True, padding=True,
+                                                max_length=512,
+                                                return_tensors='pt')
+            outputs = self.model(**data)
+            predictions = torch.argmax(outputs.logits, dim=-1)
+            for i in range(len(data['labels'])):
+                self.dp.add_answer(int(dialog_ids[i]), int(data['labels'][i]), int(predictions[i]))
+        self.train_sampler.update_source_after_epoch()
+
+    def evaluate(self, epoch, train_history):
+        self.model.eval()
+        for batch in self.eval_dataloader:
+            data, dialog_ids = _make_batch_data(batch, self.tokenizer, self.device,
+                                                truncation=True, padding=True,
+                                                max_length=512,
+                                                return_tensors='pt')
+            outputs = self.model(**data)
+            predictions = torch.argmax(outputs.logits, dim=-1)
+            self.metric.add_batch(predictions=predictions, references=data['labels'])
+        metric_value = self.metric.compute(**self.metric_kwargs)
+        print(metric_value)
+        train_history['metrics'].append(metric_value)
+
+
 def train(model,
           train_dataloader,
           train_sampler,
@@ -22,9 +114,7 @@ def train(model,
           tokenizer,
           device,
           metric,
-          bottom_percents=10,
-          num_epochs=10,
-          batch_size=32):
+          num_epochs=10):
     dp = DialogPrediction()
 
     # train_worst_sampler = WorstDialogSampler(train_dataset, dp, bottom_percents)
