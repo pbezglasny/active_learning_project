@@ -14,9 +14,37 @@ def _make_batch_data(batch, tokenizer, device,
     return {k: v.to(device) for k, v in data.items()}, batch['dialog_id']
 
 
+class Trainer:
+
+    def __init__(self, model, tokenizer, device, metric, metric_kwargs):
+        self.model = model
+        self.tokenizer = tokenizer
+        self.device = device
+        self.metric = metric
+        self.metric_kwargs = metric_kwargs
+
+    def train(self, num_epochs, bottom_percents, batch_size):
+        pass
+
+    def evaluate(self, eval_dataloader, train_history):
+        self.model.eval()
+        for batch in eval_dataloader:
+            data, dialog_ids = _make_batch_data(batch, self.tokenizer, self.device,
+                                                truncation=True, padding=True,
+                                                max_length=512,
+                                                return_tensors='pt')
+            outputs = self.model(**data)
+            predictions = torch.argmax(outputs.logits, dim=-1)
+            self.metric.add_batch(predictions=predictions, references=data['labels'])
+        metric_value = self.metric.compute(**self.metric_kwargs)
+        train_history['metrics'].append(metric_value)
+
+
 def train(model,
-          train_dataset,
-          validation_dataset,
+          train_dataloader,
+          train_sampler,
+          eval_dataloader,
+          num_training_steps,
           tokenizer,
           device,
           metric,
@@ -25,14 +53,14 @@ def train(model,
           batch_size=32):
     dp = DialogPrediction()
 
-    train_worst_sampler = WorstDialogSampler(train_dataset, dp, bottom_percents)
-    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, sampler=train_worst_sampler)
-    eval_dataloader = DataLoader(validation_dataset, batch_size=batch_size)
+    # train_worst_sampler = WorstDialogSampler(train_dataset, dp, bottom_percents)
+    # train_dataloader = DataLoader(train_dataset, batch_size=batch_size, sampler=train_worst_sampler)
+    # eval_dataloader = DataLoader(validation_dataset, batch_size=batch_size)
 
     optimizer = AdamW(model.parameters(), lr=5e-5)
 
-    num_training_steps = (len(train_dataset) + len(train_dataset) * bottom_percents // 10 * (
-            num_epochs - 1)) // batch_size
+    # num_training_steps = (len(train_dataset) + len(train_dataset) * bottom_percents // 10 * (
+    #         num_epochs - 1)) // batch_size
     lr_scheduler = get_scheduler(
         "linear",
         optimizer=optimizer,
@@ -51,7 +79,7 @@ def train(model,
                                                 max_length=512,
                                                 return_tensors='pt')
             outputs = model(**data)
-            if not train_worst_sampler.is_init:
+            if not train_sampler.is_init:
                 predictions = torch.argmax(outputs.logits, dim=-1)
                 for i in range(len(data['labels'])):
                     dp.add_answer(int(dialog_ids[i]), predictions[i] == data['labels'][i])
@@ -65,8 +93,8 @@ def train(model,
 
         train_history['loss'].append(total_loss)
 
-        if not train_worst_sampler.is_init:
-            train_worst_sampler.update_source_after_epoch()
+        if not train_sampler.is_init:
+            train_sampler.update_source_after_epoch()
 
         model.eval()
         for batch in eval_dataloader:

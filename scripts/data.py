@@ -41,7 +41,7 @@ class WorstDialogSampler(AbstractWorstDialogSampler):
 
         for i in range(len(self.data_source)):
             d = self.data_source[i]
-            if d['dialog_num'] in self.worst_dialog_ids:
+            if d['dialog_id'] in self.worst_dialog_ids:
                 self.worst_dataset_indices.append(i)
 
     def __iter__(self) -> Iterator[int]:
