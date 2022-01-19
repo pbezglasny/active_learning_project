@@ -85,7 +85,6 @@ class WorstDialogSamplerWithRemoval(AbstractWorstDialogSampler):
             bottom_k_percents = self.bottom_k_percents
         self.next_dialogs = set(self.dialog_predictions.
                                 get_bottom_k_percents(bottom_k_percents))
-        print(list(self.next_dialogs)[:10])
         self.dialog_ids = [did for did in self.dialog_ids
                            if did not in self.next_dialogs]
 

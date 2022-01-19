@@ -3,7 +3,7 @@ from transformers import AdamW
 from transformers import get_scheduler
 
 from scripts.data import AbstractWorstDialogSampler
-from scripts.utils import DialogPrediction, DialogPredictionCustomMetric
+from scripts.utils import DialogPrediction, AbstractDialogPrediction
 
 
 def _make_batch_data(batch, tokenizer, device,
@@ -20,6 +20,7 @@ class Trainer:
                  first_epoch_dataloader,
                  train_dataloader,
                  train_sampler: AbstractWorstDialogSampler,
+                 dp: AbstractDialogPrediction,
                  eval_dataloader,
                  tokenizer, device,
                  metric,
@@ -34,8 +35,7 @@ class Trainer:
         self.device = device
         self.metric = metric
         self.metric_kwargs = metric_kwargs
-        self.dp = DialogPredictionCustomMetric(metric,
-                                               metric_kwargs=metric_kwargs)
+        self.dp = dp
         self.optimizer = AdamW(model.parameters(), lr=5e-5)
         self.init(**kwargs)
 
@@ -51,7 +51,7 @@ class Trainer:
         train_history = {'loss': [], 'metrics': []}
         for epoch in range(num_epochs):
             self.at_each_epoch_step(epoch, train_history)
-            self.after_epoch_end(epoch, train_history)
+            self.at_epoch_end(epoch, train_history)
             self.evaluate(epoch, train_history)
 
     def at_each_epoch_step(self, epoch, train_history):
@@ -77,9 +77,10 @@ class Trainer:
         print(total_loss)
         train_history['loss'].append(total_loss)
 
-    def after_epoch_end(self, epoch_num, train_history):
+    def at_epoch_end(self, epoch_num, train_history):
         self.train_sampler.eval(True)
         self.model.eval()
+        self.dp.reset()
         for batch in self.train_dataloader:
             data, dialog_ids = _make_batch_data(batch, self.tokenizer, self.device,
                                                 truncation=True, padding=True,
@@ -88,7 +89,8 @@ class Trainer:
             outputs = self.model(**data)
             predictions = torch.argmax(outputs.logits, dim=-1)
             for i in range(len(data['labels'])):
-                self.dp.add_answer(int(dialog_ids[i]), int(data['labels'][i]), int(predictions[i]))
+                self.dp.add_answer(dialog_id=int(dialog_ids[i]), actual=int(data['labels'][i]),
+                                   predicted=int(predictions[i]))
         self.train_sampler.update_source_after_epoch()
 
     def evaluate(self, epoch, train_history):

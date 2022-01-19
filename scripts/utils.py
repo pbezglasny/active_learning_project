@@ -31,6 +31,14 @@ class AbstractDialogPrediction(ABC):
     def get_bottom_k_percents(self, k):
         pass
 
+    @abstractmethod
+    def reset(self):
+        pass
+
+    @abstractmethod
+    def add_answer(self, **kwargs):
+        pass
+
 
 class DialogPrediction(AbstractDialogPrediction):
     def __init__(self):
@@ -101,7 +109,7 @@ class DialogPredictionCustomMetric(AbstractDialogPrediction):
             pred = self.predicted_answers[key]
             metric_value = -self.metric(actual, pred, **self.metric_kwargs)
             if len(answer) < result_count:
-                heapq.heappush(answer, (metric_value, k))
+                heapq.heappush(answer, (metric_value, key))
             else:
                 prev_ratio, dialog_id = heapq.heappop(answer)
                 if prev_ratio > metric_value:
