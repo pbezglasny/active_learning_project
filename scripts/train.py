@@ -16,7 +16,8 @@ def _make_batch_data(batch, tokenizer, device,
 
 class Trainer:
 
-    def __init__(self, model,
+    def __init__(self,
+                 model,
                  first_epoch_dataloader,
                  train_dataloader,
                  train_sampler: AbstractWorstDialogSampler,

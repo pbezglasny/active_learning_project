@@ -28,6 +28,10 @@ class DialogStats:
 class AbstractDialogPrediction(ABC):
 
     @abstractmethod
+    def get_bottom_k_values(self, k):
+        pass
+
+    @abstractmethod
     def get_bottom_k_percents(self, k):
         pass
 
@@ -51,20 +55,26 @@ class DialogPrediction(AbstractDialogPrediction):
     def add_answer(self, dialog_id, correct):
         self.answers[dialog_id].add_ans(correct)
 
-    def get_bottom_k_percents(self, k):
+    def get_bottom_k_values(self, k):
+        if k < 1:
+            raise ValueError(f'Value of k should be greater than {0}')
+        result_count = k
         answer = []
-        result_count = len(self.answers) * k // 100
-        result_count = max(result_count, 1)
-        for k, v in self.answers.items():
+        for key, v in self.answers.items():
             if len(answer) < result_count:
-                heapq.heappush(answer, (-v.ratio, k))
+                heapq.heappush(answer, (-v.ratio, key))
             else:
                 prev_ratio, dialog_id = heapq.heappop(answer)
                 if prev_ratio > -v.ratio:
                     heapq.heappush(answer, (prev_ratio, dialog_id))
                 else:
-                    heapq.heappush(answer, (-v.ratio, k))
+                    heapq.heappush(answer, (-v.ratio, key))
         return [dialog_id for _, dialog_id in answer]
+
+    def get_bottom_k_percents(self, k):
+        result_count = len(self.answers) * k // 100
+        result_count = max(result_count, 1)
+        return self.get_bottom_k_values(result_count)
 
     def __repr__(self):
         return str(self.answers)
@@ -93,15 +103,16 @@ class DialogPredictionCustomMetric(AbstractDialogPrediction):
         self.actual_answers[dialog_id] = actual
         self.predicted_answers[dialog_id] = predicted
 
-    def get_bottom_k_percents(self, k):
-        answer = []
+    def get_bottom_k_values(self, k):
+        if k < 1:
+            raise ValueError(f'Value of k should be greater than {0}')
         if len(self.actual_answers) != len(self.predicted_answers):
             raise ValueError(
                 f'Size of actual answers is not equal to size'
                 f' of predicted, given {len(self.actual_answers)} '
                 f'and {len(self.predicted_answers)}')
-        result_count = len(self.actual_answers) * k // 100
-        result_count = max(result_count, 1)
+        answer = []
+        result_count = k
         for key in self.actual_answers.keys():
             if key not in self.predicted_answers:
                 raise ValueError(f'Key {key} does not appear in predicted dict')
@@ -117,3 +128,8 @@ class DialogPredictionCustomMetric(AbstractDialogPrediction):
                 else:
                     heapq.heappush(answer, (metric_value, key))
         return [dialog_id for _, dialog_id in answer]
+
+    def get_bottom_k_percents(self, k):
+        result_count = len(self.actual_answers) * k // 100
+        result_count = max(result_count, 1)
+        return self.get_bottom_k_values(result_count)
