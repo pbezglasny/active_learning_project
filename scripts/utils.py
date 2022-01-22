@@ -2,6 +2,8 @@ from collections import defaultdict
 import heapq
 from sklearn.metrics import accuracy_score
 from abc import ABC, abstractmethod
+import dataclasses
+import json
 
 
 class DialogStats:
@@ -133,3 +135,10 @@ class DialogCustomMetricCounter(AbstractDialogMetricCounter):
         result_count = len(self.actual_answers) * k // 100
         result_count = max(result_count, 1)
         return self.get_bottom_k_values(result_count)
+
+
+class EnhancedJSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if dataclasses.is_dataclass(o):
+            return dataclasses.asdict(o)
+        return super().default(o)

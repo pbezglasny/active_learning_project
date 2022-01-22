@@ -29,7 +29,9 @@ class MetricConfig:
             return MetricResult(k, self.name, v)
 
     @classmethod
-    def load_metric(cls, metric_name, name_alias, compute_kwargs, load_kwargs=None):
+    def load_metric(cls, metric_name, name_alias, compute_kwargs=None, load_kwargs=None):
+        if compute_kwargs is None:
+            compute_kwargs = {}
         if load_kwargs is None:
             load_kwargs = {}
         metric = load_metric(metric_name, **load_kwargs)
