@@ -1,23 +1,29 @@
+from collections import defaultdict
+
 import torch
 from datasets import DatasetDict
-from datasets import load_metric
 from sklearn.metrics import f1_score
 from torch.utils.data import DataLoader
 from transformers import AutoModelForSequenceClassification
 from transformers import AutoTokenizer
 
 from scripts.data import WorstDialogSamplerWithRemoval, RandomSamplerWithRemoval
+from scripts.metrics import MetricConfig, MetricConfigList
 from scripts.train import Trainer
 from scripts.utils import DialogCustomMetricCounter
-from collections import defaultdict
-import json
+import click
 
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
-f1 = load_metric('f1')
+f1_weighted = MetricConfig.load_metric('f1', 'f1 weighted', {'average': 'weighted'})
+f1_macro = MetricConfig.load_metric('f1', 'f1 macro', {'average': 'macro'})
+f1_micro = MetricConfig.load_metric('f1', 'f1 macro', {'average': 'micro'})
+
+metrics = MetricConfigList([f1_weighted, f1_macro, f1_micro])
 
 dataset = DatasetDict.load_from_disk('/home/pavel/work/active_learning_project/exploded_dataset')
 
-model_name = 'bert-base-uncased'
+# gpt2
+model_name = 'distilbert-base-uncased'
 # num_epochs = 2
 # percent_of_data_at_epoch = 10
 batch_size = 32
@@ -25,8 +31,10 @@ eval_metric_kwargs = {'average': 'weighted'}
 
 whole_history = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))
 
-percents = [5, 10, 15, 20]
-epochs = [5, 7, 10]
+# percents = [5, 10, 15, 20]
+percents = [5]
+# epochs = [5, 7, 10]
+epochs = [2]
 for percent_of_data_at_epoch in percents:
     for num_epochs in epochs:
         print(percent_of_data_at_epoch, num_epochs)
@@ -56,8 +64,7 @@ for percent_of_data_at_epoch in percents:
             eval_dataloader,
             tokenizer,
             device,
-            f1,
-            eval_metric_kwargs,
+            metrics,
             num_training_steps=500
         )
 
@@ -79,13 +86,36 @@ for percent_of_data_at_epoch in percents:
             eval_dataloader,
             tokenizer,
             device,
-            f1,
-            eval_metric_kwargs,
+            metrics,
             num_training_steps=500
         )
 
         hist = random_trainer.train(num_epochs)
         whole_history[num_epochs][percent_of_data_at_epoch]['random'] = hist
 
-with open('bert-base-uncased.json', 'wt') as f:
-    json.dump(whole_history, f)
+# with open('bert-base-uncased.json', 'wt') as f:
+#     json.dump(whole_history, f)
+print(whole_history)
+
+
+def parse_list(s, separator=','):
+    try:
+        return [int(i) for i in s.split(separator)]
+    except:
+        raise ValueError(f"Can't parse string list '{s}'")
+
+
+@click.command()
+@click.option('--dataset', help='dataset location')
+@click.option('--model', help='hugging face model name')
+@click.option('--batch', help='Batch size', default=32, type=int)
+@click.option('--epochs', help='Comma separated list of number epochs for training')
+@click.option('--percents', help='Comma separated list of number of percent to select at each epoch')
+def main(dataset, model, batch, epochs, percents):
+    epochs = parse_list(epochs)
+    percents = parse_list(percents)
+    pass
+
+
+if __name__ == '__main__':
+    main()

@@ -4,6 +4,7 @@ from transformers import get_scheduler
 
 from scripts.data import AbstractWorstDialogSampler
 from scripts.utils import AbstractDialogMetricCounter
+from scripts.metrics import MetricConfigList
 
 
 def _make_batch_data(batch, tokenizer, device,
@@ -24,8 +25,7 @@ class Trainer:
                  dp: AbstractDialogMetricCounter,
                  eval_dataloader,
                  tokenizer, device,
-                 metric,
-                 metric_kwargs,
+                 metrics: MetricConfigList,
                  dialog_metric_counter_kwargs=None,
                  **kwargs):
         if dialog_metric_counter_kwargs is None:
@@ -37,8 +37,7 @@ class Trainer:
         self.eval_dataloader = eval_dataloader
         self.tokenizer = tokenizer
         self.device = device
-        self.metric = metric
-        self.metric_kwargs = metric_kwargs
+        self.metrics = metrics
         self.dp = dp
         self.optimizer = AdamW(model.parameters(), lr=5e-5)
         self.dialog_metric_counter_kwargs = dialog_metric_counter_kwargs
@@ -108,7 +107,8 @@ class Trainer:
                                                 return_tensors='pt')
             outputs = self.model(**data)
             predictions = torch.argmax(outputs.logits, dim=-1)
-            self.metric.add_batch(predictions=predictions, references=data['labels'])
-        metric_value = self.metric.compute(**self.metric_kwargs)
-        print(metric_value)
-        train_history['metrics'].append(metric_value)
+            self.metrics.add_batch(predictions=predictions, references=data['labels'])
+
+        metric_values = self.metrics.compute()
+        print(metric_values)
+        train_history['metrics'].append(metric_values)
