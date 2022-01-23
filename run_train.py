@@ -3,13 +3,13 @@
 from subprocess import Popen, PIPE, CalledProcessError
 
 # 'gpt2'
-# models = ['bert-base-uncased', 'distilbert-base-uncased', 'bert-base-multilingual-cased', 'bert-base-cased',
-#           'albert-base-v2']
-models = ['bert-base-uncased']
-# percents = '5,10,15,20'
-percents = '5'
-# epochs = '5,7,10'
-epochs = '2'
+models = ['bert-base-uncased', 'distilbert-base-uncased', 'bert-base-multilingual-cased', 'bert-base-cased',
+          'albert-base-v2']
+# models = ['bert-base-uncased']
+percents = '5,10,15,20'
+# percents = '5'
+epochs = '5,7,10'
+# epochs = '2'
 
 script_command = ['python', 'scripts/train.py']
 

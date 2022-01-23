@@ -1,0 +1,2956 @@
+{
+  "5": {
+    "5": {
+      "active": {
+        "loss": [
+          134.6643896624446,
+          51.249766662716866,
+          43.349549517035484,
+          40.346143424510956,
+          40.49334251880646
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.633063358358971
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5295897425510577
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7021935803693147
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7021935803693147
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7064160029974156
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6341910350569977
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7362746313049944
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7362746313049944
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7358791594224547
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6693118278895709
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7541207088858595
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7541207088858595
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7358791594224547
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6693118278895709
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7541207088858595
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7541207088858595
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7358791594224547
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6693118278895709
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7541207088858595
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7541207088858595
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.7914747175632877
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.6996966774340826
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.8046511627906977
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.8046511627906977
+          }
+        ]
+      },
+      "random": {
+        "loss": [
+          133.46852534264326,
+          65.97916975617409,
+          54.06073482334614,
+          50.9681638777256,
+          51.09026901423931
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6397440870485258
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5314495004741147
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7055397199157268
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7055397199157268
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7488815142331963
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6712970235149558
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7706035444292973
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7706035444292973
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7596271993350735
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6939624344149531
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7727103730325938
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7727103730325938
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7596271993350735
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6939624344149531
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7727103730325938
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7727103730325938
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7596271993350735
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6939624344149531
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7727103730325938
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7727103730325938
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.8025395363919238
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.7129115607639147
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.812015503875969
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.812015503875969
+          }
+        ]
+      }
+    },
+    "10": {
+      "active": {
+        "loss": [
+          136.24890281260014,
+          97.24399936944246,
+          86.3245584629476,
+          87.17137795314193,
+          86.95218836888671
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.628674695604195
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5211874243149353
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.6995910273887719
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.6995910273887719
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7242218305057049
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6570084175120573
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7460651877556079
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7460651877556079
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7242218305057049
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6570084175120573
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7460651877556079
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7460651877556079
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7242218305057049
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6570084175120573
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7460651877556079
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7460651877556079
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7242218305057049
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6570084175120573
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7460651877556079
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7460651877556079
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.7801363277123928
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.6862261927894452
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.796640826873385
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.796640826873385
+          }
+        ]
+      },
+      "random": {
+        "loss": [
+          137.84387824311852,
+          127.35141265392303,
+          113.55640381574631,
+          113.44978275895119,
+          114.06641083955765
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6557980915495676
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5629066953725643
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7124798611971743
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7124798611971743
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7628940535724708
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.7001602149967283
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7748172016358904
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7748172016358904
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7628940535724708
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.7001602149967283
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7748172016358904
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7748172016358904
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7628940535724708
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.7001602149967283
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7748172016358904
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7748172016358904
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7628940535724708
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.7001602149967283
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7748172016358904
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7748172016358904
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.8046503877704335
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.7200871113008863
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.812532299741602
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.812532299741602
+          }
+        ]
+      }
+    },
+    "15": {
+      "active": {
+        "loss": [
+          132.43276315927505,
+          122.06189048662782,
+          98.46943620406091,
+          98.10922140069306,
+          97.9996226169169
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6531033967421834
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5524232833402203
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.712851654480109
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.712851654480109
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7071834232538999
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.629802236332068
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7368942867765522
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7368942867765522
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7071834232538999
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.629802236332068
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7368942867765522
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7368942867765522
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7071834232538999
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.629802236332068
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7368942867765522
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7368942867765522
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7071834232538999
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.629802236332068
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7368942867765522
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7368942867765522
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.7752815820600807
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.6717265200478091
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.7978036175710594
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.7978036175710594
+          }
+        ]
+      },
+      "random": {
+        "loss": [
+          134.23938381671906,
+          183.46402141451836,
+          168.86970046162605,
+          168.5392405539751,
+          169.1391527801752
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6525426502321043
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5511570303390154
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7124798611971743
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7124798611971743
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7546321284037152
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6824200970881406
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7546321284037152
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6824200970881406
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7546321284037152
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6824200970881406
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7546321284037152
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6824200970881406
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.801265031167457
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.7049275291990345
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.8169250645994832
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.8169250645994832
+          }
+        ]
+      }
+    },
+    "20": {
+      "active": {
+        "loss": [
+          135.62802777066827,
+          122.12127060815692,
+          98.83245366625488,
+          99.16948777809739,
+          99.17598868533969
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6377068193022994
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5368253859460931
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7031850291238072
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7031850291238072
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7108970961627208
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6340072199156256
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7406122196058991
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7406122196058991
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7108970961627208
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6340072199156256
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7406122196058991
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7406122196058991
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7108970961627208
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6340072199156256
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7406122196058991
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7406122196058991
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7108970961627208
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6340072199156256
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7406122196058991
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7406122196058991
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.7743239876850727
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.6691130063010559
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.7972868217054263
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.7972868217054263
+          }
+        ]
+      },
+      "random": {
+        "loss": [
+          134.2737042158842,
+          239.5779458284378,
+          225.2581521719694,
+          226.67999267578125,
+          226.31183248758316
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6269836316835325
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5214162923633491
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.698971371917214
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.698971371917214
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.765148291501122
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.7030388594851953
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7782872722766142
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7782872722766142
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.765148291501122
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.7030388594851953
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7782872722766142
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7782872722766142
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.765148291501122
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.7030388594851953
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7782872722766142
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7782872722766142
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.765148291501122
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.7030388594851953
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7782872722766142
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7782872722766142
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.8089160337421738
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.7240634077563654
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.8186046511627908
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.8186046511627907
+          }
+        ]
+      }
+    }
+  },
+  "7": {
+    "5": {
+      "active": {
+        "loss": [
+          135.9858572334051,
+          51.14863035827875,
+          42.89016704261303,
+          39.953503921628,
+          39.44380673766136,
+          39.33026421070099,
+          39.48128193616867
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6369471351490122
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.533392985316587
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7036807535010534
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7036807535010534
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7157554429229904
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6392739387725231
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7438344280579997
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7438344280579997
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7367954957108436
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6669193453361866
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7561036063948444
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7561036063948444
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7367954957108436
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6669193453361866
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7561036063948444
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7561036063948444
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7367954957108436
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6669193453361866
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7561036063948444
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7561036063948444
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7367954957108436
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6669193453361866
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7561036063948444
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7561036063948444
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7367954957108436
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6669193453361866
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7561036063948444
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7561036063948444
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.792529570578664
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.7000540038729139
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.8065891472868217
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.8065891472868217
+          }
+        ]
+      },
+      "random": {
+        "loss": [
+          134.78420025482774,
+          66.66050583124161,
+          55.67315347492695,
+          53.35897181928158,
+          53.148738116025925,
+          53.020748019218445,
+          52.62088204920292
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6348391122641287
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5333632773427979
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7023175114636262
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7023175114636262
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7622519676242684
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6995585996824156
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7746932705415789
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7746932705415789
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7610900488751714
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6965704727132452
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7766761680505638
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7766761680505638
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7610900488751714
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6965704727132452
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7766761680505638
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7766761680505638
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7610900488751714
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6965704727132452
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7766761680505638
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7766761680505638
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7610900488751714
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6965704727132452
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7766761680505638
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7766761680505638
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7610900488751714
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6965704727132452
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7766761680505638
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7766761680505638
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.8036438790343929
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.7121145611570452
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.8158914728682171
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.8158914728682171
+          }
+        ]
+      }
+    },
+    "10": {
+      "active": {
+        "loss": [
+          137.93262784183025,
+          98.12229786068201,
+          87.86235272139311,
+          88.61090721189976,
+          89.28799858689308,
+          88.49671783670783,
+          88.83725319057703
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6523785383405427
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5556334588907474
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7112405502540587
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7112405502540587
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7222879055049837
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6529378161689807
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7456933944726732
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7456933944726732
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7222879055049837
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6529378161689807
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7456933944726732
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7456933944726732
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7222879055049837
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6529378161689807
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7456933944726732
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7456933944726732
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7222879055049837
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6529378161689807
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7456933944726732
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7456933944726732
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7222879055049837
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6529378161689807
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7456933944726732
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7456933944726732
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7222879055049837
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6529378161689807
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7456933944726732
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7456933944726732
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.7783145302078464
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.682274038102855
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.7965116279069767
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.7965116279069767
+          }
+        ]
+      },
+      "random": {
+        "loss": [
+          133.1963716186583,
+          128.96875205636024,
+          114.33078652620316,
+          113.9926856905222,
+          114.2752648293972,
+          115.15058569610119,
+          114.54676033556461
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6344755241129209
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5348160970444146
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7024414425579378
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7024414425579378
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7621335441486905
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6995064858963855
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7749411327302022
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.774941132730202
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7621335441486905
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6995064858963855
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7749411327302022
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.774941132730202
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7621335441486905
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6995064858963855
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7749411327302022
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.774941132730202
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7621335441486905
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6995064858963855
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7749411327302022
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.774941132730202
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7621335441486905
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6995064858963855
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7749411327302022
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.774941132730202
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7621335441486905
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6995064858963855
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7749411327302022
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.774941132730202
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.8089653969665073
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.7235504707713419
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.8177002583979329
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.8177002583979328
+          }
+        ]
+      }
+    }
+  },
+  "10": {
+    "5": {
+      "active": {
+        "loss": [
+          136.285737991333,
+          51.13941939920187,
+          43.65600334852934,
+          40.44213652610779,
+          40.4561387822032,
+          40.29522140324116,
+          40.62819091230631,
+          39.91732444614172,
+          40.76651602238417,
+          40.730895556509495
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6193307033039359
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.510728666212698
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.6951295079935556
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.6951295079935556
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7093911619762112
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6315122578033036
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7390011153798488
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7390011153798488
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7394171800709468
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.672119812397391
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7574668484322716
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7574668484322716
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7394171800709468
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.672119812397391
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7574668484322716
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7574668484322716
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7394171800709468
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.672119812397391
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7574668484322716
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7574668484322716
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7394171800709468
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.672119812397391
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7574668484322716
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7574668484322716
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7394171800709468
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.672119812397391
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7574668484322716
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7574668484322716
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7394171800709468
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.672119812397391
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7574668484322716
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7574668484322716
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7394171800709468
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.672119812397391
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7574668484322716
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7574668484322716
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7394171800709468
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.672119812397391
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7574668484322716
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7574668484322716
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.7911789352340949
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.6994584060921953
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.8045219638242894
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.8045219638242894
+          }
+        ]
+      },
+      "random": {
+        "loss": [
+          133.55257633700967,
+          69.13679724931717,
+          58.15925374627113,
+          55.40660537779331,
+          55.29401758313179,
+          55.325258672237396,
+          55.21859730780125,
+          55.12180972099304,
+          55.39988413453102,
+          55.24793040752411
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6478581856219423
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5422145865768253
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7107448258768125
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7107448258768125
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7569508828788661
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6891386473939088
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7735778906927747
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7735778906927748
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7635186727322758
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6988026458148309
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7772958235221217
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7772958235221217
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7635186727322758
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6988026458148309
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7772958235221217
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7772958235221217
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7635186727322758
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6988026458148309
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7772958235221217
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7772958235221217
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7635186727322758
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6988026458148309
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7772958235221217
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7772958235221217
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7635186727322758
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6988026458148309
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7772958235221217
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7772958235221217
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7635186727322758
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6988026458148309
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7772958235221217
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7772958235221217
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7635186727322758
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6988026458148309
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7772958235221217
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7772958235221217
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7635186727322758
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6988026458148309
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7772958235221217
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7772958235221217
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.8028831709155283
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.7144780156837258
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.812015503875969
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.812015503875969
+          }
+        ]
+      }
+    },
+    "10": {
+      "active": {
+        "loss": [
+          133.44255696982145,
+          98.20228779315948,
+          87.90352239459753,
+          89.17182337120175,
+          89.43510780483484,
+          88.81696594506502,
+          89.39536503702402,
+          89.33897630870342,
+          89.06193187460303,
+          88.97092821449041
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.652652872652073
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5582834358300047
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7103730325938777
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7103730325938779
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7269347446759743
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6605894438322024
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7479241541702812
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7479241541702814
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7269347446759743
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6605894438322024
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7479241541702812
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7479241541702814
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7269347446759743
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6605894438322024
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7479241541702812
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7479241541702814
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7269347446759743
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6605894438322024
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7479241541702812
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7479241541702814
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7269347446759743
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6605894438322024
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7479241541702812
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7479241541702814
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7269347446759743
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6605894438322024
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7479241541702812
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7479241541702814
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7269347446759743
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6605894438322024
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7479241541702812
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7479241541702814
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7269347446759743
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6605894438322024
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7479241541702812
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7479241541702814
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7269347446759743
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6605894438322024
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7479241541702812
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7479241541702814
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.7829169808030997
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.6881556367620636
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.8000000000000002
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.8
+          }
+        ]
+      },
+      "random": {
+        "loss": [
+          134.44785771518946,
+          129.26209573447704,
+          113.5198547244072,
+          113.91690123081207,
+          114.47013203799725,
+          114.22714142501354,
+          113.87639294564724,
+          114.08637128770351,
+          114.26462848484516,
+          113.51470530033112
+        ],
+        "metrics": [
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.6193231207829017
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.5105774921462611
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.6945098525219978
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.6945098525219978
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7579586022187189
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6894359016574383
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7579586022187189
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6894359016574383
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7579586022187189
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6894359016574383
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7579586022187189
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6894359016574383
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7579586022187189
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6894359016574383
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7579586022187189
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6894359016574383
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7579586022187189
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6894359016574383
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7579586022187189
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6894359016574383
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ],
+          [
+            {
+              "metric": "f1",
+              "metric_alias": "f1 weighted",
+              "value": 0.7579586022187189
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 macro",
+              "value": 0.6894359016574383
+            },
+            {
+              "metric": "f1",
+              "metric_alias": "f1 micro",
+              "value": 0.7751889949188252
+            },
+            {
+              "metric": "accuracy",
+              "metric_alias": "accuracy",
+              "value": 0.7751889949188251
+            }
+          ]
+        ],
+        "test_metrics": [
+          {
+            "metric": "f1",
+            "metric_alias": "f1 weighted",
+            "value": 0.8019796796983765
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 macro",
+            "value": 0.7103553883556318
+          },
+          {
+            "metric": "f1",
+            "metric_alias": "f1 micro",
+            "value": 0.8136950904392765
+          },
+          {
+            "metric": "accuracy",
+            "metric_alias": "accuracy",
+            "value": 0.8136950904392765
+          }
+        ]
+      }
+    }
+  }
+}
