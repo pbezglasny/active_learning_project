@@ -29,3 +29,30 @@ WIP:
 Done:
  - I have pipeline for training model based on chosen strategy.
  
+# Week 2
+
+TODO:
+ - Update train pipeline: now model train only on part of data. At each epoch dialog with 
+bad performance are chosen to train at epoch
+ 
+WIP:
+ - Added trainer class, which encapsulate train steps.
+ - Added sampler, which remove used dialogs after epoch
+ - Added metric classes
+
+Done:
+ - Added classes that implement logic from point above. 
+
+# Week 3
+
+TODO:
+ - Train different models with different parameter(number of epoch, percent of choosing 
+bad dialogs)
+ 
+WIP:
+ - Updated run train script to use different models.
+
+Done:
+ - Trained 5 models(bert-base-uncased, distilbert-base-uncased, 
+bert-base-multilingual-cased, bert-base-cased, albert-base-v2)
+with different transformer underneath.
