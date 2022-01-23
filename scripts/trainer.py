@@ -115,3 +115,17 @@ class Trainer:
         metric_values = self.metrics.compute()
         _logger.info(f'Metrics for {epoch} is {metric_values}')
         train_history['metrics'].append(metric_values)
+
+    def evaluate_test(self, test_dataloader):
+        self.model.eval()
+        for batch in test_dataloader:
+            data, dialog_ids = _make_batch_data(batch, self.tokenizer, self.device,
+                                                truncation=True, padding=True,
+                                                max_length=512,
+                                                return_tensors='pt')
+            outputs = self.model(**data)
+            predictions = torch.argmax(outputs.logits, dim=-1)
+            self.metrics.add_batch(predictions=predictions, references=data['labels'])
+
+        metric_values = self.metrics.compute()
+        return metric_values

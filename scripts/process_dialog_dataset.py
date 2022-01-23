@@ -16,12 +16,13 @@ def explode_dataset(dataset):
     return {'dialog': dialog, 'act': act, 'dialog_id': dialog_id}
 
 
-dataset = load_dataset("daily_dialog")
+if __name__ == '__main__':
+    dataset = load_dataset("daily_dialog")
 
-train = Dataset.from_dict(explode_dataset(dataset['train']))
-test = Dataset.from_dict(explode_dataset(dataset['test']))
-validation = Dataset.from_dict(explode_dataset(dataset['validation']))
+    train = Dataset.from_dict(explode_dataset(dataset['train']))
+    test = Dataset.from_dict(explode_dataset(dataset['test']))
+    validation = Dataset.from_dict(explode_dataset(dataset['validation']))
 
-exploded_dataset = DatasetDict(train=train, test=test, validation=validation)
+    exploded_dataset = DatasetDict(train=train, test=test, validation=validation)
 
-exploded_dataset.save_to_disk('exploded_dataset')
+    exploded_dataset.save_to_disk('exploded_dataset')

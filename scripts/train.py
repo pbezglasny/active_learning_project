@@ -2,11 +2,12 @@ from collections import defaultdict
 import sys
 
 import torch
-from datasets import DatasetDict
+from datasets import DatasetDict, load_dataset, Dataset
 from sklearn.metrics import f1_score
 from torch.utils.data import DataLoader
 from transformers import AutoModelForSequenceClassification
 from transformers import AutoTokenizer
+from scripts.process_dialog_dataset import explode_dataset
 
 from scripts.data import WorstDialogSamplerWithRemoval, RandomSamplerWithRemoval
 from scripts.metrics import MetricConfig, MetricConfigList
@@ -28,13 +29,12 @@ def parse_list(s, separator=','):
 
 
 @click.command()
-@click.option('--dataset', help='dataset location', type=str, required=True)
 @click.option('--model', 'model_name', help='hugging face model name', type=str, required=True)
 @click.option('--batch', 'batch_size', help='Batch size', default=32, type=int)
 @click.option('--epochs', help='Comma separated list of number epochs for training', required=True)
 @click.option('--percents', help='Comma separated list of number of percent to select at each epoch', required=True)
 @click.option('--output', help='Output file location', type=str, required=True)
-def main(dataset, model_name, batch_size, epochs, percents, output):
+def main(model_name, batch_size, epochs, percents, output):
     epochs = parse_list(epochs)
     percents = parse_list(percents)
 
@@ -46,7 +46,10 @@ def main(dataset, model_name, batch_size, epochs, percents, output):
 
     metrics = MetricConfigList([f1_weighted, f1_macro, f1_micro, accuracy])
 
-    dataset = DatasetDict.load_from_disk(dataset)
+    dataset = load_dataset('daily_dialog')
+    train = Dataset.from_dict(explode_dataset(dataset['train']))
+    test = Dataset.from_dict(explode_dataset(dataset['test']))
+    validation = Dataset.from_dict(explode_dataset(dataset['validation']))
 
     eval_metric_kwargs = {'average': 'weighted'}
 
@@ -63,12 +66,17 @@ def main(dataset, model_name, batch_size, epochs, percents, output):
 
             dp = DialogCustomMetricCounter(f1_score, metric_kwargs=eval_metric_kwargs)
 
-            size_of_data_at_epoch = len(dataset['train']) * percent_of_data_at_epoch // 100
+            train_length = len(train)
+            all_indices = range(train_length)
+            first_epoch_data = train.select(all_indices[:train_length // 10])
+            train_data = train.select(all_indices[train_length // 10:])
+            size_of_data_at_epoch = len(train_data) * percent_of_data_at_epoch // 100
 
-            train_worst_sampler = WorstDialogSamplerWithRemoval(dataset['train'], dp, size_of_data_at_epoch, False)
-            train_dataloader = DataLoader(dataset['train'], batch_size=batch_size, sampler=train_worst_sampler)
-            eval_dataloader = DataLoader(dataset['validation'], batch_size=batch_size)
-            first_epoch_dataloader = DataLoader(dataset['test'], batch_size=batch_size)
+            train_worst_sampler = WorstDialogSamplerWithRemoval(train_data, dp, size_of_data_at_epoch, False)
+            train_dataloader = DataLoader(train_data, batch_size=batch_size, sampler=train_worst_sampler)
+            eval_dataloader = DataLoader(validation, batch_size=batch_size)
+            first_epoch_dataloader = DataLoader(first_epoch_data, batch_size=batch_size)
+            test_dataloader = DataLoader(test, batch_size=batch_size)
 
             model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=5)
             model.to(device)
@@ -87,13 +95,19 @@ def main(dataset, model_name, batch_size, epochs, percents, output):
             )
 
             hist = trainer.train(num_epochs)
+            test_metrics = trainer.evaluate_test(test_dataloader)
+
+            _logger.info((f'Test metrics for {percent_of_data_at_epoch}% '
+                          f'{num_epochs} and active learner are {test_metrics}'))
+
             whole_history[num_epochs][percent_of_data_at_epoch]['active'] = hist
+            whole_history[num_epochs][percent_of_data_at_epoch]['active']['test_metrics'] = test_metrics
 
             model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=5)
             model.to(device)
 
-            random_sampler = RandomSamplerWithRemoval(dataset['train'], size_of_data_at_epoch)
-            train_dataloader = DataLoader(dataset['train'], batch_size=batch_size, sampler=random_sampler)
+            random_sampler = RandomSamplerWithRemoval(train_data, size_of_data_at_epoch)
+            train_dataloader = DataLoader(train_data, batch_size=batch_size, sampler=random_sampler)
 
             random_trainer = Trainer(
                 model,
@@ -109,7 +123,13 @@ def main(dataset, model_name, batch_size, epochs, percents, output):
             )
 
             hist = random_trainer.train(num_epochs)
+            test_metrics = random_trainer.evaluate_test(test_dataloader)
+
+            _logger.info((f'Test metrics for {percent_of_data_at_epoch}% '
+                          f'{num_epochs} and random learner are {test_metrics}'))
+
             whole_history[num_epochs][percent_of_data_at_epoch]['random'] = hist
+            whole_history[num_epochs][percent_of_data_at_epoch]['random']['test_metrics'] = test_metrics
 
     with open(output, 'wt') as f:
         json.dump(whole_history, f, cls=EnhancedJSONEncoder)
