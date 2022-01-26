@@ -11,7 +11,8 @@ Instructions:
 - The deadline is 11.59 pm UTC -12h (anywhere on earth)
  -->
  
- 
+# Project report are located in report.md file
+
 # Week 1
 
 TODO:
