@@ -102,8 +102,13 @@ class WorstDialogSamplerWithRemoval(AbstractWorstDialogSampler):
                 get_bottom_k_values(bottom_k)
 
         self.next_dialog_phrases = []
+        # print('-' * 10)
+        # print(sorted(dialogs)[:100])
+        # print(sorted(self.dialog_phrase_mapping.keys())[:100])
         for dialog in dialogs:
             self.next_dialog_phrases += self.dialog_phrase_mapping.pop(dialog)
+        # print(sorted(self.next_dialog_phrases)[:100])
+        # print('-' * 10)
         for phrase in self.next_dialog_phrases:
             self.remain_dialog_phrases.remove(phrase)
 
@@ -127,17 +132,27 @@ class RandomSamplerWithRemoval(AbstractWorstDialogSampler):
         self.sample_count = sample_count
         self.available_dialog_ids = range(len(data_source))
         self.next_dialog_ids = set()
+
+        self.phrase_mapping = {i: d['dialog_id'] for i, d in enumerate(data_source)}
+        self.dialog_phrase_mapping = defaultdict(list)
+        for phrase_id, dialog_id in self.phrase_mapping.items():
+            self.dialog_phrase_mapping[dialog_id].append(phrase_id)
+        self.next_phrases = []
         self._update_next_dialog_ids(sample_count)
-        self.is_eval = False
 
     def _update_next_dialog_ids(self, sample_count):
+
         self.next_dialog_ids = set(
-            [int(i) for i in np.random.choice(self.available_dialog_ids,
+            [int(i) for i in np.random.choice(list(self.dialog_phrase_mapping.keys()),
                                               min(sample_count,
-                                                  len(self.available_dialog_ids)))])
-        self.available_dialog_ids = [dialog_id for dialog_id in
-                                     self.available_dialog_ids if
-                                     dialog_id not in self.next_dialog_ids]
+                                                  len(self.dialog_phrase_mapping)))])
+        self.next_phrases = []
+        for d in self.next_dialog_ids:
+            self.next_phrases += self.dialog_phrase_mapping.pop(d)
+
+        # self.available_dialog_ids = [dialog_id for dialog_id in
+        #                              self.available_dialog_ids if
+        #                              dialog_id not in self.next_dialog_ids]
 
     def update_source_after_epoch(self, sample_count=None):
         if sample_count is None:
@@ -145,10 +160,10 @@ class RandomSamplerWithRemoval(AbstractWorstDialogSampler):
         self._update_next_dialog_ids(sample_count)
 
     def eval(self, is_eval):
-        self.is_eval = is_eval
+        pass
 
     def __len__(self):
-        return len(self.next_dialog_ids)
+        return len(self.next_phrases)
 
     def __iter__(self) -> Iterator[int]:
-        return iter(self.next_dialog_ids)
+        return iter(self.next_phrases)

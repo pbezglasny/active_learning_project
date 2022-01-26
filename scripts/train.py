@@ -47,9 +47,16 @@ def main(model_name, batch_size, epochs, percents, output):
     metrics = MetricConfigList([f1_weighted, f1_macro, f1_micro, accuracy])
 
     dataset = load_dataset('daily_dialog')
-    train = Dataset.from_dict(explode_dataset(dataset['train']))
+    # train = Dataset.from_dict(explode_dataset(dataset['train']))
     test = Dataset.from_dict(explode_dataset(dataset['test']))
     validation = Dataset.from_dict(explode_dataset(dataset['validation']))
+
+    train_length = len(dataset['train'])
+    all_indices = range(train_length)
+    first_epoch_data = Dataset.from_dict(explode_dataset(dataset['train'].select(all_indices[:train_length // 10])))
+    train = dataset['train'].select(all_indices[train_length // 10:])
+    train_data = Dataset.from_dict(explode_dataset(train))
+    # train_data = train.select(all_indices[train_length // 10:])
 
     eval_metric_kwargs = {'average': 'weighted'}
 
@@ -66,11 +73,7 @@ def main(model_name, batch_size, epochs, percents, output):
 
             dp = DialogCustomMetricCounter(f1_score, metric_kwargs=eval_metric_kwargs)
 
-            train_length = len(train)
-            all_indices = range(train_length)
-            first_epoch_data = train.select(all_indices[:train_length // 10])
-            train_data = train.select(all_indices[train_length // 10:])
-            size_of_data_at_epoch = len(train_data) * percent_of_data_at_epoch // 100
+            size_of_data_at_epoch = len(train) * percent_of_data_at_epoch // 100
 
             train_worst_sampler = WorstDialogSamplerWithRemoval(train_data, dp, size_of_data_at_epoch, False)
             train_dataloader = DataLoader(train_data, batch_size=batch_size, sampler=train_worst_sampler)
@@ -113,7 +116,7 @@ def main(model_name, batch_size, epochs, percents, output):
                 model,
                 first_epoch_dataloader,
                 train_dataloader,
-                train_worst_sampler,
+                random_sampler,
                 dp,
                 eval_dataloader,
                 tokenizer,
