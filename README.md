@@ -11,7 +11,7 @@ Instructions:
 - The deadline is 11.59 pm UTC -12h (anywhere on earth)
  -->
  
-# Project report are located in [report.md file](report.md). Link to repo in [github](https://github.com/pbezglasny/active_learning_project)
+# Project report are located in [report.md](report.md) file. Link to repo in [github](https://github.com/pbezglasny/active_learning_project)
 
 # Week 1
 
