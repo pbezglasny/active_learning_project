@@ -113,7 +113,7 @@ class DialogCustomMetricCounter(AbstractDialogMetricCounter):
                 f'Size of actual answers is not equal to size'
                 f' of predicted, given {len(self.actual_answers)} '
                 f'and {len(self.predicted_answers)}')
-        answer = []
+        result = []
         result_count = k
         for key in self.actual_answers.keys():
             if key not in self.predicted_answers:
@@ -121,15 +121,15 @@ class DialogCustomMetricCounter(AbstractDialogMetricCounter):
             actual = self.actual_answers[key]
             pred = self.predicted_answers[key]
             metric_value = -self.metric(actual, pred, **self.metric_kwargs)
-            if len(answer) < result_count:
-                heapq.heappush(answer, (metric_value, key))
+            if len(result) < result_count:
+                heapq.heappush(result, (metric_value, key))
             else:
-                prev_ratio, dialog_id = heapq.heappop(answer)
+                prev_ratio, dialog_id = heapq.heappop(result)
                 if prev_ratio > metric_value:
-                    heapq.heappush(answer, (prev_ratio, dialog_id))
+                    heapq.heappush(result, (prev_ratio, dialog_id))
                 else:
-                    heapq.heappush(answer, (metric_value, key))
-        return [dialog_id for _, dialog_id in answer]
+                    heapq.heappush(result, (metric_value, key))
+        return [dialog_id for _, dialog_id in result]
 
     def get_bottom_k_percents(self, k):
         result_count = len(self.actual_answers) * k // 100

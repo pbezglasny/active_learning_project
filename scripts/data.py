@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Iterator
 import numpy as np
+from collections import defaultdict
 
 from torch.utils.data import Sampler
 
@@ -72,8 +73,14 @@ class WorstDialogSamplerWithRemoval(AbstractWorstDialogSampler):
                  bottom_k: int,
                  is_percent: bool):
         super().__init__(data_source)
-        self.dialog_ids = list(range(len(data_source)))
-        self.next_dialogs = set()
+
+        self.phrase_mapping = {i: d['dialog_id'] for i, d in enumerate(data_source)}
+        self.dialog_phrase_mapping = defaultdict(list)
+        for phrase_id, dialog_id in self.phrase_mapping.items():
+            self.dialog_phrase_mapping[dialog_id].append(phrase_id)
+        self.next_dialog_phrases = set()
+        self.remain_dialog_phrases = set(range(len(data_source)))
+
         self.dialog_predictions = dialog_predictions
         self.bottom_k = bottom_k
         self.is_percent = is_percent
@@ -94,21 +101,23 @@ class WorstDialogSamplerWithRemoval(AbstractWorstDialogSampler):
             dialogs = self.dialog_predictions. \
                 get_bottom_k_values(bottom_k)
 
-        self.next_dialogs = set(dialogs)
-        self.dialog_ids = [did for did in self.dialog_ids
-                           if did not in self.next_dialogs]
+        self.next_dialog_phrases = []
+        for dialog in dialogs:
+            self.next_dialog_phrases += self.dialog_phrase_mapping.pop(dialog)
+        for phrase in self.next_dialog_phrases:
+            self.remain_dialog_phrases.remove(phrase)
 
     def __len__(self):
         if self.is_eval:
-            return len(self.dialog_ids)
+            return len(self.remain_dialog_phrases)
         else:
-            return len(self.next_dialogs)
+            return len(self.next_dialog_phrases)
 
     def __iter__(self):
         if self.is_eval:
-            return iter(self.dialog_ids)
+            return iter(self.remain_dialog_phrases)
         else:
-            return iter(self.next_dialogs)
+            return iter(self.next_dialog_phrases)
 
 
 class RandomSamplerWithRemoval(AbstractWorstDialogSampler):
