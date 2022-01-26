@@ -1,11 +1,12 @@
+import logging
+
 import torch
 from transformers import AdamW
 from transformers import get_scheduler
 
 from scripts.data import AbstractWorstDialogSampler
-from scripts.utils import AbstractDialogMetricCounter
 from scripts.metrics import MetricConfigList
-import logging
+from scripts.utils import AbstractDialogMetricCounter
 
 _logger = logging.getLogger('Trainer')
 

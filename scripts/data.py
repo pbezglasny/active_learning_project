@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
-from typing import Iterator
-import numpy as np
 from collections import defaultdict
+from typing import Iterator
 
+import numpy as np
 from torch.utils.data import Sampler
 
 from scripts.utils import AbstractDialogMetricCounter

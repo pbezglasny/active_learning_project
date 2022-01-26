@@ -54,6 +54,5 @@ WIP:
  - Updated run train script to use different models.
 
 Done:
- - Trained 4 models(bert-base-uncased, distilbert-base-uncased, 
-bert-base-multilingual-cased, bert-base-cased)
+ - Trained 3 models(bert-base-uncased, distilbert-base-uncased, bert-base-cased)
 with different transformer underneath.
