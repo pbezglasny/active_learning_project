@@ -28,13 +28,13 @@ Additionally, scripts were added:
 Next results were obtained:
 
 ![bert_uncased_1](images/bert_uncased_1.png)
-![bert_uncased_2](images/bert_uncased_2.png)
+![bert_uncased_2](images/bert_uncased_2.png)  
 
 ![bert_cased_1](images/bert_cased_1.png)
-![bert_cased_2](images/bert_cased_2.png)
+![bert_cased_2](images/bert_cased_2.png)  
 
 ![dist_bert_1](images/dist_bert_cased_1.png)
-![dist_bert_2](images/dist_bert_cased_2.png)
+![dist_bert_2](images/dist_bert_cased_2.png)  
 
 
 | model                   |   percent |   num_epochs |   f1 weighted active |   f1 weighted random |   accuracy active |   accuracy random |
