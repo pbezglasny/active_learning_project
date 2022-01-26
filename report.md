@@ -32,6 +32,15 @@ Additionally, scripts were added:
 ---
 Next results were obtained:
 
+![bert_uncased_1](images/bert_uncased_1.png)
+![bert_uncased_2](images/bert_uncased_2.png)
+
+![bert_cased_1](images/bert_cased_1.png)
+![bert_cased_2](images/bert_cased_2.png)
+
+![dist_bert_1](images/dist_bert_cased_1.png)
+![dist_bert_2](images/dist_bert_cased_2.png)
+
 
 | model                   |   percent |   num_epochs |   f1 weighted active |   f1 weighted random |   accuracy active |   accuracy random |
 |:------------------------|----------:|-------------:|---------------------:|---------------------:|------------------:|------------------:|
@@ -59,6 +68,7 @@ Next results were obtained:
 | distilbert-base-uncased |        10 |           10 |             0.784606 |             0.805672 |          0.786822 |          0.814729 |
 | distilbert-base-uncased |        15 |            5 |             0.626048 |             0.804187 |          0.614599 |          0.810724 |
 | distilbert-base-uncased |        20 |            5 |             0.75217  |             0.79569  |          0.739406 |          0.809948 |
+
 # Conclusion
 
 ---
