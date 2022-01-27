@@ -25,17 +25,18 @@ Additionally, scripts were added:
 
 # Results
 
+To compare models f1(weighted) and accuracy metrics were used.
+
 Next results were obtained:
 
 ![bert_uncased_1](images/bert_uncased_1.png)
-![bert_uncased_2](images/bert_uncased_2.png)  
+![bert_uncased_2](images/bert_uncased_2.png)
 
 ![bert_cased_1](images/bert_cased_1.png)
-![bert_cased_2](images/bert_cased_2.png)  
+![bert_cased_2](images/bert_cased_2.png)
 
 ![dist_bert_1](images/dist_bert_cased_1.png)
-![dist_bert_2](images/dist_bert_cased_2.png)  
-
+![dist_bert_2](images/dist_bert_cased_2.png)
 
 | model                   |   percent |   num_epochs |   f1 weighted active |   f1 weighted random |   accuracy active |   accuracy random |
 |:------------------------|----------:|-------------:|---------------------:|---------------------:|------------------:|------------------:|
@@ -64,7 +65,11 @@ Next results were obtained:
 | distilbert-base-uncased |        15 |            5 |             0.626048 |             0.804187 |          0.614599 |          0.810724 |
 | distilbert-base-uncased |        20 |            5 |             0.75217  |             0.79569  |          0.739406 |          0.809948 |
 
+Raw results located at output folder.
+
 # Conclusion
 
-
+Active learning shows worse performance than random selecting of dialogs.  
+For all models random selecting of dialogs showed better performance than selecting dialogs 
+with bad performance.
  
